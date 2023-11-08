@@ -1,0 +1,71 @@
+<style>
+
+
+    /* Estiliza la tabla */
+    table {
+    margin-top: 15%;
+    margin-left: 30%; /* O cualquier otro valor que desees para empujar la tabla hacia la derecha */
+    margin-right: 0;
+    /* Otros estilos de tu tabla */
+    width: 50%;
+    border-collapse: collapse; /* Elimina el espacio entre bordes de celdas */
+    }
+
+    /* Estiliza los encabezados de la tabla */
+    thead {
+    background-color: #d00000; /* Color de fondo rojo */
+    color: white; /* Texto en blanco */
+    }
+
+    /* Estiliza las celdas de la tabla */
+    th, td {
+    border: 1px solid black; /* Bordes negros */
+    padding: 10px; /* Espaciado dentro de las celdas */
+    text-align: left; /* Alinea el texto a la izquierda */
+    }
+
+    /* Estiliza las filas de la tabla */
+    tbody tr:nth-child(odd) {
+    background-color: #fffacd; /* Color de fondo para filas impares */
+    }
+
+    tbody tr:nth-child(even) {
+    background-color: #ffffff; /* Color de fondo para filas pares */
+    }
+
+    /* Estiliza el encabezado de la tabla */
+    th {
+    background-color: #ff0000; /* Fondo rojo para los encabezados de las columnas */
+    }
+
+    /* Añade estilos adicionales para la primera fila del encabezado, si es necesario */
+    thead tr:first-child th {
+    background-color: #d00000; /* Un tono rojo más oscuro para la primera fila del encabezado */
+    }
+
+</style>
+
+<table>
+  <thead>
+    <tr>
+      <th>NRC</th>
+      <th>Nombre de la materia</th>
+      <th>Salon</th>
+      <th>Profesor</th>
+      <th>Horario</th>
+      <th>Dias</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each clases}}
+    <tr>
+      <td>{{this.nrc}}</td>
+      <td>{{this.nombre}}</td>
+      <td>{{this.salon}}</td>
+      <td>{{this.maestro}}</td>
+      <td>{{this.horario}}</td>
+      <td>{{this.dias}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>

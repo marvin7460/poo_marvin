@@ -1,0 +1,93 @@
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff; /* Change the background color if needed */
+  }
+
+  .tabla-centrada {
+    display: block;
+    max-width: 50%; /* Adjust the width as needed */
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 15%; /* You can change this to adjust vertical positioning */
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* This helps in maintaining equal column widths */
+  }
+
+  td, th {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+    background-color: #fffacd; /* Light yellow background */
+  }
+
+  /* Header styles */
+  .encabezado-tabla {
+    background-color: #ffd700; /* Gold color for headers */
+    color: black;
+    font-weight: bold;
+  }
+
+  /* Title row styles */
+  .titulo-tabla th {
+    background-color: #d00000; /* Red background for title */
+    color: white;
+    text-align: center;
+    padding: 8px 0; /* Adjust padding to control the height of the title row */
+  }
+</style>
+
+<div class="tabla-centrada">
+  <table>
+    <tr class="titulo-tabla">
+      <th colspan="4">DATOS DEL ESTUDIANTE</th>
+    </tr>
+    <tr>
+      <td class="encabezado-tabla">Código:</td>
+      <td>
+        {{usuario.codigo}}
+      </td> <!-- Data goes here -->
+      <td class="encabezado-tabla">Nombre:</td>
+      <td>
+        {{usuario.nombre}}
+      </td> <!-- Data goes here -->
+    </tr>
+    <tr>
+      <td class="encabezado-tabla">Situación:</td>
+      <td>
+        {{usuario.situacion}}
+      </td> <!-- Data goes here -->
+      <td class="encabezado-tabla">Nivel:</td>
+      <td>
+        {{usuario.nivel}}
+      </td> <!-- Data goes here -->
+    </tr>
+    <tr>
+      <td class="encabezado-tabla">Carrera:</td>
+      <td>
+        {{usuario.carrera}}
+      </td> <!-- Data goes here -->
+      <td class="encabezado-tabla">Período:</td>
+      <td>
+        {{usuario.periodo}}
+      </td> <!-- Data goes here -->
+    </tr>
+    <tr>
+      <td class="encabezado-tabla">Centro:</td>
+      <td>
+        {{usuario.centro}}
+      </td> <!-- Data goes here -->
+      <td class="encabezado-tabla">Sede:</td>
+      <td>
+        {{usuario.sede}}
+      </td> <!-- Data goes here -->
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,67 @@
+<style>
+    .sidebar{
+        display: none;
+    }
+</style>
+    <style>
+  .alert {
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      position: relative;
+      color: #a94442;
+      background-color: #f2dede;
+      border-color: #ebccd1;
+      box-shadow: 0 2px 4px rgba(0,0,0,.05);
+  }
+
+  .alert-danger {
+      color: #721c24;
+      background-color: #f8d7da;
+      border-color: #f5c6cb;
+  }
+
+  .close {
+      color: #000;
+      text-shadow: none;
+      opacity: 1;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 15px;
+      line-height: 20px;
+      font-weight: bold;
+  }
+
+  .close:hover {
+      color: #5a5a5a;
+  }
+
+  .close:focus {
+      outline: none;
+  }
+</style>
+
+    
+    <div class="id" href="/layouts/login.css">
+        <img src="../img/logo.jpeg" alt="NERO" class="logo">
+        <h1>LOGIN
+        </h1>
+    {{!-- Multiple error types handling block --}}
+    {{#each erores}}
+    <div class="alert alert-danger" role="alert">
+        {{text}}
+    </div>
+    {{/each}}
+    <form action="/login" method="POST">
+        <label for="username">Username</label>
+        <input type="text" name="codigo" id="codigo" placeholder="Username">
+        <label for="password">Password</label>
+        <input type="password" name="pasword" id="pasword" placeholder="Password">
+        <input type="submit" value="Login" id="boton">
+    </div>
+  

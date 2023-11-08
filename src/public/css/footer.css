@@ -1,0 +1,32 @@
+html {
+    height: 100%;
+    margin: 0; /* Resetea cualquier margen por defecto */
+  }
+  
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+  }
+  
+  #content-wrap {
+    min-height: 100%; /* Altura mínima de 100% */
+    display: flex; /* Usa Flexbox */
+    flex-direction: column; /* Elementos apilados verticalmente */
+  }
+  .social-icon {
+    margin: 0 15px; /* Espaciado horizontal entre íconos */
+    color: #fff; /* Color de los íconos */
+    text-decoration: none; /* Elimina el subrayado de los enlaces */
+    font-size: 48px; /* Tamaño de los íconos aumentado */
+  }
+  
+  footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    /* Aquí se coloca al final */
+  }
+  

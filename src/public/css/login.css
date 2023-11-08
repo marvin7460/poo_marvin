@@ -1,0 +1,57 @@
+body {
+    background-image: url('/img/fondo.jpeg'); /* Ruta a tu imagen de fondo */
+    background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el fondo */
+    background-repeat: no-repeat; /* Evita que la imagen de fondo se repita */
+    background-position: center center; /* Centra la imagen en el fondo */
+    height: 100vh; /* Asegura que el cuerpo ocupe al menos el 100% de la altura del viewport */
+    margin-top: -20px; /* Mueve la imagen hacia arriba un 20% de su altura */
+
+}
+  
+.logo {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+        display: block;
+        margin-bottom: 20px;
+        margin-top: -150px; /* Mueve la imagen hacia arriba */
+    }
+
+.id{
+    font-family: Anton;
+    width: 300px; /* Ancho del div, ajusta según tus necesidades */
+    height: 300px; /* Altura del div, ajusta según tus necesidades */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+.id h1{
+    text-align: center; /* Centramos el texto */
+    color: #000000; /* Color del texto */
+    font-weight: normal; /* Quitamos la negrita que viene por defecto */
+    margin-bottom: 20px; /* Separamos el texto de los bordes */
+    text-shadow: red;
+}
+
+.id input{
+    width: 90%; /* Indicamos que el input debe ocupar el 100% del espacio disponible */
+    padding: 10px; /* Damos un espacio entre el borde del input y el texto que escriba el usuario */
+    margin-bottom: 20px; /* Separamos los input entre ellos */
+    border-radius: 5px; /* Damos un pequeño redondeado a los bordes del recuadro */
+    border: 1px solid #D3BC9C; /* Damos un borde gris al recuadro */
+}
+.id #boton{
+    width: 30%; /* Indicamos que el input debe ocupar el 100% del espacio disponible */
+    left: 30%;
+    position: relative;
+}
+
+.id form{
+    width: 300px; /* Ancho del formulario */
+    padding: 20px; /* Separamos el formulario de los bordes */
+    background-color: #D3BC9C; /* Color de fondo del formulario */
+    border-radius: 5px; /* Damos un pequeño redondeado a los bordes del formulario */
+    box-shadow: 0px 0px 10px#D3BC9C; /* Damos una pequeña sombra al formulario */
+}

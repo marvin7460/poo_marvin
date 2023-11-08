@@ -1,0 +1,16 @@
+###
+POST http://localhost:5000/api/users HTTP/1.1
+Content-Type: application/json
+
+{
+    "codigo": "123456",
+    "username": "omar",
+    "password": "1q2w3e4r",
+    "nombre": "Omar Covian",
+    "situacion": "Regular",
+    "nivel": "Universitario",
+    "carrera": "Ingeniería ICOM",
+    "centro": "CUCEI",
+    "sede": "Guadalajara",
+    "periodo": "2023-A"
+}
