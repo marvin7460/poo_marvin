@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>NERO</title>
+    <link rel="icon" href="/img/logo.jpeg" type="image/png">
     <link rel="stylesheet" href="https://fonts.google.com/specimen/Anton">
     <link rel="stylesheet" href="/css/alumno.css">
     <link rel="stylesheet" type="text/css" href="/css/login.css">
@@ -13,13 +14,54 @@
 
 </head>
 <body>
-    
     <div class="sidebar" id="sidebar">
-        <a href="/inicio">Inicio</a>
-        <a href="/clases">Clases</a>
-        <a href="#contact">Contacto</a>
-        <a href="#about">Acerca de</a>
-    </div>
+    <a href="#" id="linkInicio">Inicio</a>
+    <a href="#" id="linkClases">Clases</a>
+    <a href="#" id="linkBuscar" class="LinkBuscar">Buscar</a>
+    <a href="#" id="linkSalir">Salir</a>
+</div>
+
+    <script>
+        // Función para establecer el prefijo de la ruta a todos los enlaces
+        function setLinkPaths() {
+            var currentPath = window.location.pathname; // Obtienes la ruta actual
+            var pathParts = currentPath.split('/'); // Separa la ruta por '/'
+            var basePath = pathParts[1]; // Obtiene la primera parte de la ruta (después del primer '/')
+
+            // Asegúrate de que basePath sea una parte válida de la ruta para evitar enlaces incorrectos
+            if (basePath !== '' && basePath.toLowerCase() !== 'inicio' && basePath.toLowerCase() !== 'clases') {
+                // Configura el href de cada enlace
+                document.getElementById('linkInicio').setAttribute('href', '/' + basePath + '/inicio');
+                document.getElementById('linkClases').setAttribute('href', '/' + basePath + '/clases');
+                document.getElementById('linkBuscar').setAttribute('href', '/' + basePath + '/buscar');
+                document.getElementById('linkSalir').setAttribute('href', '/' + basePath + '/salir');
+                // Ocultar o mostrar los enlaces según la ruta
+                if (basePath.toLowerCase() === 'administrador') {
+                    // Oculta el enlace "Clases" y muestra el enlace "Buscar"
+                    document.getElementById('linkClases').style.display = 'none';
+                    document.getElementById('linkBuscar').style.display = 'block';
+                } else {
+                    // Muestra el enlace "Clases" y oculta el enlace "Buscar"
+                    document.getElementById('linkClases').style.display = 'block';
+                    document.getElementById('linkBuscar').style.display = 'none';
+                }
+            } else {
+                // En caso de que basePath no sea válido (p.ej., estamos en la raíz del sitio), usa rutas estándar
+                document.getElementById('linkInicio').setAttribute('href', '/inicio');
+                document.getElementById('linkClases').setAttribute('href', '/clases');
+                document.getElementById('linkBuscar').setAttribute('href', '/buscar');
+                document.getElementById('linkSalir').setAttribute('href', '/salir');
+                document.getElementById('linkClases').style.display = 'none';
+                document.getElementById('linkBuscar').style.display = 'block';
+            }
+        }
+
+        // Ejecuta la función cuando la página cargue
+        window.onload = setLinkPaths;
+    </script>
+
+
+
     <main id="content-wrap">
         
 

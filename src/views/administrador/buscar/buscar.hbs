@@ -1,0 +1,103 @@
+<style>
+        .tabla-busqueda {
+            width: 60%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            margin-top: 10%;
+        }
+
+        .tabla-busqueda th {
+            background-color: #d00000; /* Red background for header */
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .tabla-busqueda td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid black;
+        }
+
+        .tabla-busqueda .fila-nombre {
+            background-color: #ff0000; /* Red background */
+        }
+
+        .tabla-busqueda .fila-codigo {
+            background-color: #00ff00; /* Green background */
+        }
+
+        .tabla-busqueda tr:nth-child(even) {
+            background-color: #fffacd; /* Light yellow background */
+        }
+
+        .tabla-busqueda tr:nth-child(odd) {
+            background-color: #ffffff; /* White background */
+        }
+
+        .boton-buscar {
+        display: block;
+        width: 60%; /* Igual al ancho de la tabla */
+        padding: 10px;
+        margin: 10px auto; /* Centra el botón horizontalmente y añade margen superior */
+        background-color: #4CAF50; /* Color de fondo verde */
+        color: white;
+        border: none;
+        cursor: pointer;
+        box-sizing: border-box; /* Incluye el padding y el borde en el ancho total del botón */
+        }
+
+        .boton-buscar:hover {
+            background-color: #45a049;
+        }
+        .tabla-busqueda input {
+        width: 100%; /* Establece el ancho del input al 100% del contenedor td */
+        box-sizing: border-box; /* Asegura que el padding y el borde estén incluidos en el ancho total */
+        border: 1px solid #ccc; /* Añade un borde ligero para mantener el diseño consistente */
+        padding: 8px; /* Añade algo de relleno para que no esté pegado a los bordes */
+        }
+    /* ... tus otros estilos ... */
+
+    .tabla-busqueda input {
+        width: calc(100% - 20px); /* Resta 20px para tener en cuenta el padding */
+        box-sizing: border-box; /* Incluye el padding y el borde en el ancho */
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin: 0; /* Asegúrate de que no haya margen exterior que afecte el ancho */
+    }
+
+    .boton-buscar {
+        display: block;
+        width: calc(60% - 20px); /* Igual que el ancho de la tabla, menos el padding */
+        padding: 10px;
+        margin: 10px auto;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        box-sizing: border-box;
+    }
+
+    /* ... */
+</style>
+
+<form action="/administrador/buscar/encontrado" method="post"> <!-- Cambia /ruta-destino por la URL a la que quieras enviar el formulario -->
+    <table class="tabla-busqueda">
+        <tr>
+            <th colspan="2">BUSCAR DATOS</th>
+        </tr>
+        <tr class="fila-nombre">
+            <td>Nombre</td>
+            <td><input type="text" id="nombre" name="nombre"></td>
+        </tr>
+        <tr class="fila-codigo">
+            <td>Codigo</td>
+            <td><input type="text" id="codigo" name="codigo"></td>
+        </tr>
+        <tr>
+            <td>Clase</td>
+            <td><input type="text" id="clases" name="clases"></td>
+        </tr>
+    </table>
+    <button type="submit" class="boton-buscar" value="buscar">Buscar</button>
+</form>

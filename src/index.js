@@ -30,9 +30,11 @@ app.use(session({
 }));
 
 //rutas
-app.use(require('./routes/index'));
+app.use(require('./routes/profesor'));
 app.use(require('./routes/alumno'));
 app.use(require('./routes/user'));
+app.use(require('./routes/administrador'));
+app.use(require('./routes/modificar'));
 
 //estaticos
 app.use(express.static(path.join(__dirname, 'public')));

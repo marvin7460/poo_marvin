@@ -11,7 +11,7 @@ router.get('/alumno', (req, res) => {
         res.redirect('/');
     }
 });
-router.get('/inicio', (req, res) => {
+router.get('/alumno/inicio', (req, res) => {
     if (req.session.user) {
         // Renderizar la vista de alumno con los datos del usuario
         res.render('alumno/inicio/index', { usuario: req.session.user });
@@ -20,11 +20,11 @@ router.get('/inicio', (req, res) => {
         res.redirect('/');
     }
 });
-router.get('/clases', async (req, res) => {
+router.get('/alumno/clases', async (req, res) => {
   // Asegúrate de que la sesión del usuario contenga el código del alumno
   if (req.session.user && req.session.user.codigo) {
     const codigoAlumno = req.session.user.codigo;
-    
+    console.log(codigoAlumno);
     try {
       // Busca todas las clases donde el array 'alumnos' contiene el código del alumno
       const clasesEncontradas = (await miSchema.find({ alumnos: codigoAlumno })).map(doc => doc.toObject());
@@ -47,5 +47,10 @@ router.get('/clases', async (req, res) => {
     res.redirect('/');
   }
 });
+router.get('/alumno/salir',async (req,res)=>{
+  if (req.session.user) {
+    // Renderizar la vista de alumno con los datos del usuario
+    res.redirect('/');
+}});
 
 module.exports = router;    

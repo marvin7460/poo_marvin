@@ -47,50 +47,41 @@
     }
 </style>
 
+
 <div class="tabla-centrada">
   <table>
     <tr class="titulo-tabla">
-      <th colspan="4">DATOS DEL ESTUDIANTE</th>
+      <th colspan="2">DATOS DEL ENCARGADO</th>
     </tr>
     <tr>
-      <td class="encabezado-tabla">Código:</td>
-      <td>
-        {{usuario.codigo}}
-      </td> <!-- Data goes here -->
-      <td class="encabezado-tabla">Nombre:</td>
-      <td>
-        {{usuario.nombre}}
-      </td> <!-- Data goes here -->
+      <td class="encabezado-tabla">Nombre completo:</td>
+      <td>{{usuario.nombreCompleto}}</td>
     </tr>
     <tr>
-      <td class="encabezado-tabla">Situación:</td>
+      <td class="encabezado-tabla">Títulos académicos:</td>
       <td>
-        {{usuario.situacion}}
-      </td> <!-- Data goes here -->
-      <td class="encabezado-tabla">Nivel:</td>
-      <td>
-        {{usuario.nivel}}
-      </td> <!-- Data goes here -->
+        {{#each usuario.titulosObtenidos}}
+          {{this.nombreTitulo}} en {{this.institucion}} (Obtenido en: {{this.año.$numberInt}})
+          <br>
+        {{/each}}
+      </td>
     </tr>
     <tr>
-      <td class="encabezado-tabla">Carrera:</td>
+      <td class="encabezado-tabla">Certificaciones:</td>
       <td>
-        {{usuario.carrera}}
-      </td> <!-- Data goes here -->
-      <td class="encabezado-tabla">Período:</td>
-      <td>
-        {{usuario.periodo}}
-      </td> <!-- Data goes here -->
+        {{#each usuario.certificaciones}}
+          {{this.nombre}} - {{this.institucion}} (Año: {{this.año}})
+          <br>
+        {{/each}}
+      </td>
     </tr>
     <tr>
-      <td class="encabezado-tabla">Centro:</td>
-      <td>
-        {{usuario.centro}}
-      </td> <!-- Data goes here -->
-      <td class="encabezado-tabla">Sede:</td>
-      <td>
-        {{usuario.sede}}
-      </td> <!-- Data goes here -->
+      <td class="encabezado-tabla">Posición o cargo actual:</td>
+      <td>{{usuario.posicionActual}}</td>
+    </tr>
+    <tr>
+      <td class="encabezado-tabla">Departamento o facultad:</td>
+      <td>{{usuario.departamentoFacultad}}</td>
     </tr>
   </table>
 </div>
