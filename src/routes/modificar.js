@@ -3,6 +3,56 @@ const userSchema = require('../models/user');
 const profeSchema = require('../models/profesor');
 const miSchema = require('../models/clase'); // Importa tu modelo
 
+router.post('/cambiopf', (req, res) => {
+    const { id, nombreCompleto, nacionalidad, departamentoFacultad, codigo } = req.body;
+
+    // Usar el campo 'id' para encontrar el documento del profesor
+    profeSchema.findOneAndUpdate({ codigo: codigo },{
+        nombreCompleto,
+        nacionalidad,
+        departamentoFacultad,
+        codigo
+    }, { new: true })
+    .then(updatedProfesor => {
+        if (updatedProfesor) {
+            // Profesor actualizado con éxito
+            res.redirect('/administrador/buscar/encontrado'); // Modificar con la ruta deseada
+        } else {
+            // Profesor no encontrado
+            res.status(404).send('Profesor no encontrado');
+        }
+    })
+    .catch(error => {
+        console.error(error);
+        res.status(500).send('Error al actualizar los datos del profesor');
+    });
+});
+
+router.post('/cambioal', (req, res) => {
+    const { codigo, nombre, situacion, nivel, carrera, periodo, centro, sede } = req.body;
+
+    // Identificador del usuario (debes obtenerlo de alguna manera, ej. de la sesión)
+
+    userSchema.findOneAndUpdate({ codigo: codigo }, {
+        nombre,
+        situacion,
+        nivel,
+        carrera,
+        periodo,
+        centro,
+        sede
+    }, { new: true }) // { new: true } para devolver el documento modificado
+    .then(updatedUser => {
+        // Redirigir o manejar la respuesta tras la actualización exitosa
+        res.redirect('/administrador/buscar/encontrado');
+
+    })
+    .catch(error => {
+        // Manejar errores, como un fallo en la conexión a la base de datos
+        console.error(error);
+        res.status(500).send('Error al actualizar los datos del usuario');
+    });
+});
 // Ruta para mostrar información de usuario (alumno o profesor) y sus clases
 router.get('/administrador/buscar/encontrado', async (req, res) => {
     // Verifica si hay un usuario en sesión

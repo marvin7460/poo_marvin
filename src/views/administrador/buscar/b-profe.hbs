@@ -1,194 +1,233 @@
+ <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+        }
 
+        .tabla-centrada {
+            display: block;
+            max-width: 50%;
+            margin: 0 auto;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            margin-top: 5%;
+        }
 
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
 
-<style>
-  body, html {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #fff; /* Change the background color if needed */
-  }
+        td, th {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+            background-color: #fffacd;
+        }
 
-  .tabla-centrada {
-    display: block;
-    max-width: 50%; /* Adjust the width as needed */
-    width: 100%;
-    margin: 0 auto;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* Sombra sutil para dar profundidad */
-    margin-top: 5%; /* You can change this to adjust vertical positioning */
-  }
+        .encabezado-tabla {
+            background-color: #ffd700;
+            color: black;
+            font-weight: bold;
+        }
 
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    table-layout: fixed; /* This helps in maintaining equal column widths */
-  }
+        .titulo-tabla th {
+            background-color: #d00000;
+            color: white;
+            text-align: center;
+            padding: 8px 0;
+        }
 
-  td, th {
-    border: 1px solid black;
-    padding: 8px;
-    text-align: left;
-    background-color: #fffacd; /* Light yellow background */
-  }
+        .tabla-clases {
+            width: 50%;
+            margin: 2% auto 0;
+            border-collapse: collapse;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            background-color: #ffffff;
+        }
 
-  /* Header styles */
-  .encabezado-tabla {
-    background-color: #ffd700; /* Gold color for headers */
-    color: black;
-    font-weight: bold;
-  }
+        .tabla-clases thead th {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 1.1em;
+        }
 
-  /* Title row styles */
-  .titulo-tabla th {
-    background-color: #d00000; /* Red background for title */
-    color: white;
-    text-align: center;
-    padding: 8px 0; /* Adjust padding to control the height of the title row */
-  }
-  .LinkBuscar{
-      display: none;
-    }
+        .tabla-clases tbody td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            vertical-align: middle;
+        }
 
-  /* Estilos específicos para la tabla de clases */
-  .tabla-clases {
-    width: 50%; /* Ajusta el ancho que prefieras */
-    margin: 2% auto 0; /* Espacio arriba y centrado horizontalmente */
-    border-collapse: collapse; /* Elimina el espacio entre bordes de celdas */
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* Sombra sutil para dar profundidad */
-    background-color: #ffffff; /* Fondo blanco para contraste */
-  }
+        .tabla-clases tbody tr:nth-child(odd) {
+            background-color: #f2f2f2;
+        }
 
-  /* Estilos para los encabezados de la tabla de clases */
-  .tabla-clases thead th {
-    background-color: #4CAF50; /* Color verde para los encabezados */
-    color: white; /* Texto en blanco */
-    text-align: center;
-    padding: 10px;
-    font-size: 1.1em; /* Un poco más grande para destacar */
-  }
+        .tabla-clases tbody tr:hover {
+            background-color: #ddd;
+        }
 
-  /* Estilos para las celdas de la tabla de clases */
-  .tabla-clases tbody td {
-    border: 1px solid #ddd; /* Bordes más suaves */
-    padding: 8px; /* Espaciado dentro de las celdas */
-    text-align: left; /* Alinea el texto a la izquierda */
-    vertical-align: middle; /* Alinea verticalmente el contenido en las celdas */
-  }
-
-  /* Estilos para las filas alternas de la tabla de clases para mejorar la legibilidad */
-  .tabla-clases tbody tr:nth-child(odd) {
-    background-color: #f2f2f2; /* Fondo más claro para filas impares */
-  }
-
-  /* Estilos para el hover de las filas */
-  .tabla-clases tbody tr:hover {
-    background-color: #ddd; /* Color al pasar el ratón por encima */
-  }
-
-  /* Ajustar el espaciado entre tablas */
-  .tabla-centrada + .tabla-clases {
-    margin-top: 2%; /* Añade un espacio entre las tablas */
-  }
-</style>
-
-<div class="tabla-centrada">
-  <table>
-    <tr class="titulo-tabla">
-      <th colspan="2">DATOS DEL PROFESOR</th>
-    </tr>
-    <tr>
-      <td class="encabezado-tabla">Nombre completo:</td>
-      <td>{{usuario.nombreCompleto}}</td>
-    </tr>
-    <tr>
-      <td class="encabezado-tabla">Nacionalidad:</td>
-      <td>{{usuario.nacionalidad}}</td>
-    </tr>
-    <tr>
-      <td class="encabezado-tabla">Títulos académicos:</td>
-      <td>
-        {{#each usuario.titulosAcademicos}}
-          {{this.titulo}} en {{this.institucion}} (Obtenido en: {{this.fechaObtencion}})
-          <br>
-        {{/each}}
-      </td>
-    </tr>
-    <tr>
-      <td class="encabezado-tabla">Cursos o materias que imparte:</td>
-      <td>
-        {{#each usuario.cursosImpartidos}}
-          {{nombreCurso}} (Código: {{this.codigoCurso}})
-          <br>
-        {{/each}}
-      </td>
-    </tr>
-    <tr>
-      <td class="encabezado-tabla">Departamento o facultad:</td>
-      <td>{{usuario.departamentoFacultad}}</td>
-    </tr>
-    <tr>
-      <td class="encabezado-tabla">Código:</td>
-      <td>{{usuario.codigo}}</td>
-    </tr>
-  </table>
-</div>
-
-<table class="tabla-clases">
-  <thead>
-    <tr>
-      <th>NRC</th>
-      <th>Nombre de la materia</th>
-      <th>Salon</th>
-      <th>Profesor</th>
-      <th>Horario</th>
-      <th>Dias</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#each clases}}
-    <tr>
-      <td>{{this.nrc}}</td>
-      <td>{{this.nombre}}</td>
-      <td>{{this.salon}}</td>
-      <td>{{this.maestro}}</td>
-      <td>{{this.horario}}</td>
-      <td>{{this.dias}}</td>
-    </tr>
-    {{/each}}
-  </tbody>
-</table>
- <div style="text-align: center; margin-top: 20px;">
-        <button onclick="window.history.back();" class="regresar-boton">Regresar</button>
-    </div>
-
-    <style>
-        /* ... (otros estilos) ... */
-
-        /* Estilos para el botón de regresar */
         .regresar-boton {
             padding: 10px 20px;
             margin-top: 20px;
             font-size: 16px;
             cursor: pointer;
-            background-color: #4CAF50; /* Color verde para el botón */
+            background-color: #4CAF50;
             color: white;
             border: none;
-            border-radius: 5px; /* Bordes redondeados para el botón */
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Sombra sutil para el botón */
-            transition: background-color 0.3s ease; /* Transición suave al cambiar el color */
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: background-color 0.3s ease;
         }
 
         .regresar-boton:hover {
-            background-color: #45a049; /* Color un poco más oscuro al pasar el ratón */
+            background-color: #45a049;
         }
+        .form-edicion {
+    display: none; /* Inicialmente oculto */
+    background-color: #f8f8f8; /* Color de fondo */
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
 
-        /* ... (otros estilos) ... */
+.form-edicion input[type="text"], .form-edicion input[type="date"] {
+    width: 95%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+}
+
+.form-edicion .boton-submit {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.form-edicion .boton-submit:hover {
+    background-color: #45a049;
+}
     </style>
 
+     <div class="tabla-centrada">
+        <table>
+            <tr class="titulo-tabla">
+                <th colspan="2">DATOS DEL PROFESOR</th>
+            </tr>
+            <tr>
+                <td class="encabezado-tabla">Nombre completo:</td>
+                <td>{{usuario.nombreCompleto}}</td>
+            </tr>
+            <tr>
+                <td class="encabezado-tabla">Nacionalidad:</td>
+                <td>{{usuario.nacionalidad}}</td>
+            </tr>
+            <tr>
+                <td class="encabezado-tabla">Títulos académicos:</td>
+                <td>
+                    {{#each usuario.titulosAcademicos}}
+                        {{this.titulo}} en {{this.institucion}} (Obtenido en: {{this.fechaObtencion}})
+                        <br>
+                    {{/each}}
+                </td>
+            </tr>
+            <tr>
+                <td class="encabezado-tabla">Cursos o materias que imparte:</td>
+                <td>
+                    {{#each usuario.cursosImpartidos}}
+                        {{nombreCurso}} (Código: {{this.codigoCurso}})
+                        <br>
+                    {{/each}}
+                </td>
+            </tr>
+            <tr>
+                <td class="encabezado-tabla">Departamento o facultad:</td>
+                <td>{{usuario.departamentoFacultad}}</td>
+            </tr>
+            <tr>
+                <td class="encabezado-tabla">Código:</td>
+                <td>{{usuario.codigo}}</td>
+            </tr>
+            <tr>
+                <td colspan="2"><button class="boton-modificar" onclick="mostrarFormulario('profesor')">Modificar</button></td>
+            </tr>
+        </table>
+
+        <div id="form-profesor" class="form-edicion">
+            <!-- Formulario de edición (se muestra al hacer clic en "Modificar") -->
+            <form action="/cambiopf" method="post">
+                <!-- Campos de formulario correspondientes a los datos del profesor -->
+                <!-- ... -->
+                <input type="hidden" name="id" value="{{usuario._id}}">
+                <input type="hidden" name="tipo" value="profesor">
+                <input type="text" name="nombreCompleto" placeholder="Nombre completo" value="{{usuario.nombreCompleto}}">
+                <input type="text" name="nacionalidad" placeholder="Nacionalidad" value="{{usuario.nacionalidad}}">
+                <input type="text" name="departamentoFacultad" placeholder="Departamento o facultad" value="{{usuario.departamentoFacultad}}">
+                <input type="text" name="codigo" placeholder="Código" value="{{usuario.codigo}}">
+                <input type="submit" value="Guardar" class="boton-submit">
+            </form>
+        </div>
+    </div>
+
+   <!-- Tabla de Clases -->
+<div class="tabla-clases">
+    <table class="tabla">
+        <thead>
+            <tr>
+                <th>NRC</th>
+                <th>Nombre de la materia</th>
+                <th>Salón</th>
+                <th>Profesor</th>
+                <th>Horario</th>
+                <th>Días</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each clases}}
+            <tr>
+                <td>{{this.nrc}}</td>
+                <td>{{this.nombre}}</td>
+                <td>{{this.salon}}</td>
+                <td>{{this.maestro}}</td>
+                <td>{{this.horario}}</td>
+                <td>{{this.dias}}</td>
+                <td><button class="boton-modificar" onclick="mostrarFormulario('clase-{{this.nrc}}')">Borrar</button></td>
+            </tr>
+            <tr id="form-clase-{{this.nrc}}" class="form-edicion">
+                <td><input type="text" value="{{this.nrc}}"></td>
+                <td><button class="boton-submit">Confirmar</button></td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+
+<!-- Botón de regresar -->
+<div style="text-align: center; margin-top: 20px;">
+    <button onclick="window.history.back();" class="regresar-boton">Regresar</button>
+</div>
+
     <script>
-        // Función para el botón de regresar que podría personalizarse si es necesario
-        function regresar() {
-            window.history.back();
+        function mostrarFormulario(id) {
+            var form = document.getElementById('form-' + id);
+            if (form.style.display === "none") {
+                form.style.display = "grid";
+            } else {
+                form.style.display = "none";
+            }
         }
     </script>

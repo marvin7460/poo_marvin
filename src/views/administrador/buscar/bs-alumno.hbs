@@ -1,6 +1,9 @@
  <style>
-
         /* Estilos comunes para las tablas */
+        footer
+        {
+            margin-top: 100%;
+        }
         .tabla {
             width: 50%;
             margin: 2% auto;
@@ -62,116 +65,167 @@
         .LinkBuscar {
             display: none;
         }
-    </style>
+              /* Estilos para los formularios de edición */
+      .form-edicion {
+          display: none; /* Inicialmente oculto */
+          flex-direction: column; /* Alinear elementos verticalmente */
+          align-items: center; /* Centrar elementos */
+          justify-content: center; /* Centrar contenido */
+          padding: 20px;
+          width: 50%;
+          margin: 10px auto; /* Centrar el formulario */
+          background-color: #f2f2f2; /* Fondo diferente para resaltar el formulario */
+          box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+          border-radius: 8px; /* Bordes redondeados */
+      }
 
-     <!-- Tabla de Datos del Profesor -->
-    <div class="tabla-profesor">
-        <table class="tabla">
-             <tr class="titulo-tabla">
-      <th colspan="4">DATOS DEL ESTUDIANTE</th>
-            </tr>
-            <tr>
-              <td class="encabezado-tabla">Código:</td>
-              <td>
-                {{usuario.codigo}}
-              </td> <!-- Data goes here -->
-              <td class="encabezado-tabla">Nombre:</td>
-              <td>
-                {{usuario.nombre}}
-              </td> <!-- Data goes here -->
-            </tr>
-            <tr>
-              <td class="encabezado-tabla">Situación:</td>
-              <td>
-                {{usuario.situacion}}
-              </td> <!-- Data goes here -->
-              <td class="encabezado-tabla">Nivel:</td>
-              <td>
-                {{usuario.nivel}}
-              </td> <!-- Data goes here -->
-            </tr>
-            <tr>
-              <td class="encabezado-tabla">Carrera:</td>
-              <td>
-                {{usuario.carrera}}
-              </td> <!-- Data goes here -->
-              <td class="encabezado-tabla">Período:</td>
-              <td>
-                {{usuario.periodo}}
-              </td> <!-- Data goes here -->
-            </tr>
-            <tr>
-              <td class="encabezado-tabla">Centro:</td>
-              <td>
-                {{usuario.centro}}
-              </td> <!-- Data goes here -->
-              <td class="encabezado-tabla">Sede:</td>
-              <td>
-                {{usuario.sede}}
-              </td> <!-- Data goes here -->
-            </tr>
-            <!-- Los placeholders deben ser reemplazados por tus datos dinámicos -->
-        </table>
-    </div>
+      .form-edicion input[type="text"], .form-edicion .boton-submit {
+          width: 90%; /* Ajustar ancho al del formulario */
+          padding: 10px;
+          margin: 5px 0;
+          border: 1px solid #ddd;
+          border-radius: 4px;
+      }
 
-    <!-- Tabla de Clases -->
-    <div class="tabla-clases">
-        <table class="tabla">
-            <thead>
-                <tr>
-                    <th>NRC</th>
-                    <th>Nombre de la materia</th>
-                    <th>Salón</th>
-                    <th>Profesor</th>
-                    <th>Horario</th>
-                    <th>Días</th>
-                </tr>
-            </thead>
-            <tbody>
-                {{#each clases}}
-                <tr>
-                  <td>{{this.nrc}}</td>
-                  <td>{{this.nombre}}</td>
-                  <td>{{this.salon}}</td>
-                  <td>{{this.maestro}}</td>
-                  <td>{{this.horario}}</td>
-                  <td>{{this.dias}}</td>
-                </tr>
-                {{/each}}
-            </tbody>
-        </table>
-    </div>
-     <div style="text-align: center; margin-top: 20px;">
-        <button onclick="window.history.back();" class="regresar-boton">Regresar</button>
-    </div>
+      .form-edicion .boton-submit {
+          background-color: #4CAF50; /* Color verde para el botón de guardar */
+          color: white;
+          cursor: pointer;
+          border: none;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      }
 
-    <style>
-        /* ... (otros estilos) ... */
+      .form-edicion .boton-submit:hover {
+          background-color: #45a049; /* Color más oscuro al pasar el ratón */
+      }
 
-        /* Estilos para el botón de regresar */
-        .regresar-boton {
-            padding: 10px 20px;
-            margin-top: 20px;
-            font-size: 16px;
-            cursor: pointer;
-            background-color: #4CAF50; /* Color verde para el botón */
+        .form-edicion .boton-submit {
+            padding: 8px 15px;
+            font-size: 1em;
             color: white;
+            background-color: #4CAF50; /* Color verde para el botón de guardar */
             border: none;
-            border-radius: 5px; /* Bordes redondeados para el botón */
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Sombra sutil para el botón */
-            transition: background-color 0.3s ease; /* Transición suave al cambiar el color */
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            width: auto; /* Ajusta el ancho del botón según el contenido */
         }
 
-        .regresar-boton:hover {
-            background-color: #45a049; /* Color un poco más oscuro al pasar el ratón */
+        .form-edicion .boton-submit:hover {
+            background-color: #45a049; /* Color más oscuro al pasar el ratón */
         }
 
-        /* ... (otros estilos) ... */
+        /* Estilos para ajustar los formularios dentro de las tablas */
+        .tabla .form-edicion {
+            display: none; /* Ocultar inicialmente */
+            width: 100%; /* Asegura que el formulario ocupe toda la celda */
+        }
+
+        .tabla .form-edicion td {
+            padding: 0; /* Remueve el padding para que el formulario se ajuste bien */
+        }
     </style>
+<div>
+    <!-- Tabla de Datos del Estudiante -->
+<div class="tabla-profesor">
+    <table class="tabla">
+        <tr class="titulo-tabla">
+            <th colspan="4">DATOS DEL ESTUDIANTE</th>
+        </tr>
+        <tr>
+            <td class="encabezado-tabla">Código:</td>
+            <td>{{usuario.codigo}}</td>
+            <td class="encabezado-tabla">Nombre:</td>
+            <td>{{usuario.nombre}}</td>
+        </tr>
+        <tr>
+            <td class="encabezado-tabla">Situación:</td>
+            <td>{{usuario.situacion}}</td>
+            <td class="encabezado-tabla">Nivel:</td>
+            <td>{{usuario.nivel}}</td>
+        </tr>
+        <tr>
+            <td class="encabezado-tabla">Carrera:</td>
+            <td>{{usuario.carrera}}</td>
+            <td class="encabezado-tabla">Período:</td>
+            <td>{{usuario.periodo}}</td>
+        </tr>
+        <tr>
+            <td class="encabezado-tabla">Centro:</td>
+            <td>{{usuario.centro}}</td>
+            <td class="encabezado-tabla">Sede:</td>
+            <td>{{usuario.sede}}</td>
+        </tr>
+        <tr>
+            <td colspan="4"><button class="boton-modificar" onclick="mostrarFormulario('estudiante')">Modificar</button></td>
+        </tr>
+    </table>
+    <!-- Formulario de edición para datos del estudiante -->
+    <div id="form-estudiante" class="form-edicion">
+    <form action="/cambioal" method="post">
+        <input type="text" name="codigo" placeholder="Código" value="{{usuario.codigo}}">
+        <input type="text" name="nombre" placeholder="Nombre" value="{{usuario.nombre}}">
+        <input type="text" name="situacion" placeholder="Situación" value="{{usuario.situacion}}">
+        <input type="text" name="nivel" placeholder="Nivel" value="{{usuario.nivel}}">
+        <input type="text" name="carrera" placeholder="Carrera" value="{{usuario.carrera}}">
+        <input type="text" name="periodo" placeholder="Período" value="{{usuario.periodo}}">
+        <input type="text" name="centro" placeholder="Centro" value="{{usuario.centro}}">
+        <input type="text" name="sede" placeholder="Sede" value="{{usuario.sede}}">
+        <input type="submit" value="Guardar" class="boton-submit">
+    </form>
+</div>
+</div>
+</div>
+<!-- Tabla de Clases -->
+<div class="tabla-clases">
+    <table class="tabla">
+        <thead>
+            <tr>
+                <th>NRC</th>
+                <th>Nombre de la materia</th>
+                <th>Salón</th>
+                <th>Profesor</th>
+                <th>Horario</th>
+                <th>Días</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each clases}}
+            <tr>
+                <td>{{this.nrc}}</td>
+                <td>{{this.nombre}}</td>
+                <td>{{this.salon}}</td>
+                <td>{{this.maestro}}</td>
+                <td>{{this.horario}}</td>
+                <td>{{this.dias}}</td>
+                <td><button class="boton-modificar" onclick="mostrarFormulario('clase-{{this.nrc}}')">Borrar</button></td>
+            </tr>
+            <tr id="form-clase-{{this.nrc}}" class="form-edicion">
+                <td><input type="text" value="{{this.nrc}}"></td>
+                <td><button class="boton-submit">Confirmar</button></td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
 
-    <script>
-        // Función para el botón de regresar que podría personalizarse si es necesario
-        function regresar() {
-            window.history.back();
+<!-- Botón de regresar -->
+<div style="text-align: center; margin-top: 20px;">
+    <button onclick="window.history.back();" class="regresar-boton">Regresar</button>
+</div>
+
+<!-- Script para mostrar el formulario -->
+<script>
+    function mostrarFormulario(id) {
+        var form = document.getElementById('form-' + id);
+        var fot = document.getElementById('al');
+        if (form.style.display === "none") {
+            form.style.display = "grid";
+            fot.style.marginTop = "100%";
+        } else {
+            form.style.display = "none";
         }
-    </script>
+
+    }
+</script>
