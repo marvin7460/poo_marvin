@@ -53,26 +53,44 @@ router.post('/cambioal', (req, res) => {
         res.status(500).send('Error al actualizar los datos del usuario');
     });
 });
+router.post('/alumno/eliminar-clase', async (req, res) => {
+    try {
+        const { nrc} = req.body;
+        const { alumnos, profesores } = req.session.searchResults;
+        //const codigoAlumno = req.session.searchResults.codigo; // Asegúrate de que el código del alumno esté disponible en la sesión
+        //console.log(alumnos.codigo);
+        //console.log(nrc);
+        // Encuentra la clase por NRC y elimina el código del alumno de la lista de alumnos
+        await miSchema.findOneAndUpdate({ nrc }, { $pull: { alumnos: alumnos.codigo } });
+
+        // Redirigir a alguna página o mostrar un mensaje
+        res.redirect('/administrador/buscar/encontrado');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error al eliminar la clase');
+    }
+});
+
 // Ruta para mostrar información de usuario (alumno o profesor) y sus clases
 router.get('/administrador/buscar/encontrado', async (req, res) => {
-    // Verifica si hay un usuario en sesión
-    if (!req.session.user) {
-        return res.redirect('/'); // No hay sesión, redirige al inicio de sesión
+    // Verifica si hay resultados de búsqueda en la sesión
+    if (!req.session.searchResults) {
+        return res.redirect('/'); // No hay resultados de búsqueda, redirige
     }
 
-    const usuario = req.session.user;
-    let filtroClases;
-
     try {
-        // Determina si la sesión es de un alumno o un profesor
-        const esProfesor = !!usuario.nacionalidad;
-        const esAlumno = !esProfesor;
+        //console.log(req.session.searchResults);
+        const { alumnos, profesores } = req.session.searchResults;
+        let filtroClases;
 
-        // Prepara el filtro basado en si es alumno o profesor
-        if (esProfesor) {
-            filtroClases = { maestro: usuario.nombreCompleto };
-        } else if (esAlumno) {
-            filtroClases = { alumnos: usuario.codigo };
+        // Determina si la sesión es de un alumno o un profesor
+        if (profesores) {
+            filtroClases = { maestro: profesores.nombreCompleto };
+        } else if (alumnos) {
+            filtroClases = { alumnos: alumnos.codigo };
+        } else {
+            // No hay información de alumno o profesor
+            return res.status(404).send('No se encontró información del usuario.');
         }
 
         // Busca las clases basadas en el filtro
@@ -81,8 +99,8 @@ router.get('/administrador/buscar/encontrado', async (req, res) => {
         // Verifica si se encontraron clases
         if (clasesEncontradas.length > 0) {
             // Renderiza la vista correspondiente con los datos de las clases
-            const vista = esProfesor ? 'administrador/buscar/b-profe' : 'administrador/buscar/bs-alumno';
-            res.render(vista, { clases: clasesEncontradas, usuario: req.session.user });
+            const vista = profesores ? 'administrador/buscar/b-profe' : 'administrador/buscar/bs-alumno';
+            res.render(vista, { clases: clasesEncontradas, usuario: alumnos || profesores });
         } else {
             // No se encontraron clases, informa al usuario
             const mensajeError = esProfesor ? 'No se encontraron clases para el profesor.' : 'No se encontraron clases para el alumno.';

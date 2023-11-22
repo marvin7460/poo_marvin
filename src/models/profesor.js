@@ -33,7 +33,7 @@ const profesorSchema = mongoose.Schema({
       required: [true, 'El código es obligatorio'],
       unique: true // Asegura que el código sea único en la colección
     },
-    contrasena: {
+    pasword: {
       type: String,
       required: [true, 'La contraseña es obligatoria']
   }

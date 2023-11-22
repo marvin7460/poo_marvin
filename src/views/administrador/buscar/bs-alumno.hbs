@@ -203,7 +203,10 @@
             </tr>
             <tr id="form-clase-{{this.nrc}}" class="form-edicion">
                 <td><input type="text" value="{{this.nrc}}"></td>
-                <td><button class="boton-submit">Confirmar</button></td>
+                <td><form action="/alumno/eliminar-clase" method="post">
+                        <input type="hidden" name="nrc" value="{{this.nrc}}">
+                        <button type="submit" class="boton-submit">Confirmar</button>
+                    </form></td>
             </tr>
             {{/each}}
         </tbody>

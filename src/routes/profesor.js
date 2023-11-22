@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const misSchema = require('../models/clase'); // Importa tu modelo
+const profeSchema = require('../models/profesor');
 
 router.get('/profesor', (req, res) => {
     if (req.session.user) {
@@ -54,5 +55,54 @@ router.get('/profesor/clases', async (req, res) => {
       res.redirect('/');
 }});
 
+router.get('/profesor/cambiar_contrase%C3%B1a', (req, res) => {
+  if (req.session.user) {
+      // Renderizar la vista de alumno con los datos del usuario
+      res.render('profesor/cambiar/cambiar_contraseña', { usuario: req.session.user });
+  }
+  else {
+      // Redirigir al login si no hay sesión
+      res.redirect('/');
+  
+  }})
+
+router.post('/profesor/cambiar_contrase%C3%B1a', async (req, res) => {
+      const { contrasenaActual, nuevaContrasena, confirmarContrasena } = req.body;
+      //console.log(req.body);
+      // Asegúrate de que el ID del usuario está en la sesión
+      const usuarioId = req.session.user._id;
+  
+      if (nuevaContrasena !== confirmarContrasena) {
+          return res.render('profesor/cambiar/cambiar_contraseña', {
+              errores: [{ text: 'Las contraseñas nuevas no coinciden.' }]
+          });
+      }
+  
+      try {
+          // Aquí deberías verificar la contraseña actual
+          // Esta es una verificación simulada, debes implementar tu propia lógica
+          const contrasenaValida = true;
+  
+          if (!contrasenaValida) {
+              return res.render('profesor/cambiar/cambiar_contraseña', {
+                  errores: [{ text: 'La contraseña actual es incorrecta.' }]
+              });
+          }
+  
+          // Encripta la nueva contraseña aquí
+          const contrasenaEncriptada = nuevaContrasena; // Usa una función de encriptación real
+  
+          // Actualiza la contraseña del usuario en la base de datos
+          await profeSchema.updateOne(
+              { _id: usuarioId },
+              { $set: { pasword: contrasenaEncriptada } }
+          );
+  
+          res.redirect('/');
+      } catch (error) {
+          console.error(error);
+          res.status(500).send('Error al actualizar la contraseña.');
+      }
+  });
 
 module.exports = router;    

@@ -1,0 +1,81 @@
+<style>
+    /* Estiliza la tabla */
+    table {
+        margin-top: 15%;
+        margin-left: 30%;
+        margin-right: 0;
+        width: 50%;
+        border-collapse: collapse;
+    }
+
+    /* Estiliza los encabezados de la tabla */
+    thead {
+        background-color: #900000; /* Un rojo mate */
+        color: white;
+    }
+
+    /* Estiliza las celdas de la tabla */
+    th, td {
+        border: 1px solid black;
+        padding: 10px;
+        text-align: left;
+    }
+
+    /* Estiliza las filas de la tabla */
+    tbody tr:nth-child(odd) {
+        background-color: #fffacd;
+    }
+
+    tbody tr:nth-child(even) {
+        background-color: #ffffff;
+    }
+
+    /* Estiliza el encabezado de la tabla */
+    th {
+        background-color: #d40404; /* Un rojo mate para los encabezados de las columnas */
+    }
+
+    /* Estilos adicionales para la primera fila del encabezado */
+    thead tr:first-child th {
+        background-color: #bd0b0b; /* Un tono de rojo mate más oscuro */
+    }
+
+    .LinkBuscar{
+        display: none;
+    }
+</style>
+
+<div class="tabla-clases">
+    <table class="tabla">
+        <thead>
+            <tr>
+                <th>NRC</th>
+                <th>Nombre de la materia</th>
+                <th>Salón</th>
+                <th>Profesor</th>
+                <th>Horario</th>
+                <th>Días</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each clases}}
+            <tr>
+                <td>{{this.nrc}}</td>
+                <td>{{this.nombre}}</td>
+                <td>{{this.salon}}</td>
+                <td>{{this.maestro}}</td>
+                <td>{{this.horario}}</td>
+                <td>{{this.dias}}</td>
+                <td>
+                    <form action="/alumno/agregar-clase" method="post">
+                        <input type="hidden" name="nrc" value="{{this.nrc}}">
+                        <button type="submit" class="boton-modificar">Agregar</button>
+                    </form>
+                </td>
+            
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>

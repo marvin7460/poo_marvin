@@ -18,6 +18,8 @@
     <a href="#" id="linkInicio">Inicio</a>
     <a href="#" id="linkClases">Clases</a>
     <a href="#" id="linkBuscar" class="LinkBuscar">Buscar</a>
+    <a href="#" id="linkRegistrar" class="LinkRegistrar">Registrar</a>
+    <a href="#" id="linkCambiar_Contraseña" >Cambiar Contraseña</a>
     <a href="#" id="linkSalir">Salir</a>
 </div>
 
@@ -35,13 +37,22 @@
                 document.getElementById('linkClases').setAttribute('href', '/' + basePath + '/clases');
                 document.getElementById('linkBuscar').setAttribute('href', '/' + basePath + '/buscar');
                 document.getElementById('linkSalir').setAttribute('href', '/' + basePath + '/salir');
+                document.getElementById('linkRegistrar').setAttribute('href', '/' + basePath + '/registrar');
+                document.getElementById('linkCambiar_Contraseña').setAttribute('href', '/' + basePath + '/cambiar_contraseña');
                 // Ocultar o mostrar los enlaces según la ruta
                 if (basePath.toLowerCase() === 'administrador') {
                     // Oculta el enlace "Clases" y muestra el enlace "Buscar"
                     document.getElementById('linkClases').style.display = 'none';
+                    document.getElementById('linkRegistrar').style.display = 'none';
                     document.getElementById('linkBuscar').style.display = 'block';
-                } else {
+                } else if (basePath.toLowerCase() === 'alumno') {
                     // Muestra el enlace "Clases" y oculta el enlace "Buscar"
+                    document.getElementById('linkRegistrar').style.display = 'block';
+                    document.getElementById('linkClases').style.display = 'block';
+                    document.getElementById('linkBuscar').style.display = 'none';
+                }else if (basePath.toLowerCase() === 'profesor') {
+                    // Muestra el enlace "Clases" y oculta el enlace "Buscar"
+                    document.getElementById('linkRegistrar').style.display = 'none';
                     document.getElementById('linkClases').style.display = 'block';
                     document.getElementById('linkBuscar').style.display = 'none';
                 }
@@ -51,7 +62,11 @@
                 document.getElementById('linkClases').setAttribute('href', '/clases');
                 document.getElementById('linkBuscar').setAttribute('href', '/buscar');
                 document.getElementById('linkSalir').setAttribute('href', '/salir');
+                document.getElementById('linkRegistrar').setAttribute('href', '/registrar');
+                document.getElementById('linkCambiar_Contraseña').setAttribute('href', '/cambiar_contraseña');
+                // Ocultar o mostrar los enlaces según la ruta
                 document.getElementById('linkClases').style.display = 'none';
+                document.getElementById('linkRegistrar').style.display = 'none';
                 document.getElementById('linkBuscar').style.display = 'block';
             }
         }
