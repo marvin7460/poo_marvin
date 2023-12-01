@@ -44,7 +44,7 @@ app.use(express.json());
 app.use('/api',UserRoutes);
 
 // Conexión a la base de datos
-mongoose.connect(process.env.MONGODb_URI)
+mongoose.connect(process.env.MONGODB_URI)
 .then(() => {
     console.log('Conectado a la base de datos');
 })
